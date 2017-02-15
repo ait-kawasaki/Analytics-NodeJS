@@ -8,3 +8,4 @@ applications:
   disk_quota: 1024M
   env:
     BLUEMIX_APP_MGMT_ENABLE: devconsole shell
+    ENABLE_BLUEMIX_DEV_MODE: "true"
