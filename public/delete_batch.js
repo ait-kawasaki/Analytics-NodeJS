@@ -1,23 +1,19 @@
 function delete_batch(){
-	var form = new FormData();
-	form.append("test", "");
+	var data = new FormData();
+	data.append("test", "");
 
-	var settings = {
-	  "async": true,
-	  "crossDomain": true,
-	  "url": "https://ibm-watson-ml.mybluemix.net/pm/v1/jobs/job03?accesskey=N4LnXREVJ44YgZy4MCnIJaU7NCAxoihZBHpVqS6abjaubA3inBFJ/eM4ZBhB2AxLHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+Et7TSlwLngbf+3XI66NrGzoVlIkEPrfJsLi9tdLYT4J2hgHmZgw6ZHGfMarLtgzVM=",
-	  "method": "DELETE",
-	  "headers": {
-	    "cache-control": "no-cache",
-	    "postman-token": "050b03be-e317-db2a-91bd-46e5464340a7"
-	  },
-	  "processData": false,
-	  "contentType": false,
-	  "mimeType": "multipart/form-data",
-	  "data": form
-	}
+	var xhr = new XMLHttpRequest();
+	xhr.withCredentials = true;
 
-	$.ajax(settings).done(function (response) {
-	  console.log(response);
+	xhr.addEventListener("readystatechange", function () {
+	  if (this.readyState === 4) {
+	    console.log(this.responseText);
+	  }
 	});
+
+	xhr.open("DELETE", "https://ibm-watson-ml.mybluemix.net/pm/v1/jobs/job03?accesskey=N4LnXREVJ44YgZy4MCnIJaU7NCAxoihZBHpVqS6abjaubA3inBFJ%2FeM4ZBhB2AxLHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi%20Et7TSlwLngbf%203XI66NrGzoVlIkEPrfJsLi9tdLYT4J2hgHmZgw6ZHGfMarLtgzVM%3D");
+	xhr.setRequestHeader("cache-control", "no-cache");
+	xhr.setRequestHeader("postman-token", "ee5c1a35-4477-dfd0-f15c-1a06674902d2");
+
+	xhr.send(data);
 }
