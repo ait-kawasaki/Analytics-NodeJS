@@ -19,7 +19,5 @@ function delete_batch(){
 
 	$.ajax(settings).done(function (response) {
 	  console.log(response);
-	  var result = document.getElementById('result_div');
-	  result.innerHTML = response;
 	});
 }
