@@ -14,6 +14,12 @@ var cfenv = require('cfenv');
 
 // create a new express server
 var app = express();
+app.use(function(request, response, next) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
