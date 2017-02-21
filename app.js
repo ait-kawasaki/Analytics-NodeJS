@@ -6,11 +6,11 @@
 
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
-var app = require("express")(),
- restler = require("restler"),
- bodyParser = require("body-parser");
+var express = require('express')
+  , cors = require('cors')
+  , app = express();
 
-app.use(bodyParser.json());
+app.use(cors());
 
 app.use(function(request, response, next) {
     response.header("Access-Control-Allow-Origin", "*");
@@ -68,8 +68,8 @@ var appEnv = cfenv.getAppEnv();
 //});
 
 
-// start server on the specified port and binding host
-app.listen(appEnv.port, '0.0.0.0', function() {
-  // print a message when the server starts listening
-  console.log("server starting on " + appEnv.url);
-});
+//// start server on the specified port and binding host
+//app.listen(appEnv.port, '0.0.0.0', function() {
+//  // print a message when the server starts listening
+//  console.log("server starting on " + appEnv.url);
+//});
