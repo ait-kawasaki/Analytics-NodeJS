@@ -6,12 +6,11 @@
 
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
-var express = require('express')
-  , cors = require('cors')
-  , app = express();
-var cfenv = require('cfenv');
+var express = require('express');
 
-app.use(cors());
+//create a new express server
+var app = express();
+
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
@@ -20,21 +19,6 @@ app.use(function(request, response, next) {
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With,Content-Type, Accept");
     next();
 });
-
-
-app.post("/", function(request, response) {
-    var options = {
-        username: "resAdmin",
-        password: "replace"
-    };
-
-    var url = "https://brsv2-6855bc66.ng.bluemix.net/DecisionService/rest" +  "/vacationsRuleApp/1.0/vacationsRuleProject/json";
-
-    restler.postJson(url, request.body, options).on('complete', function(data) {
-        response.send(data);
-    });
-});
-
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
