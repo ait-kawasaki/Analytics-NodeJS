@@ -7,6 +7,8 @@
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
 var express = require('express');
+var cors = require('cors');
+app.use(cors());
 
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
@@ -17,7 +19,12 @@ var app = express();
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
-
+app.use(function(request, response, next) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    response.header("Access-Control-Allow-Methods", "GET, POST, PUT");
+    next();
+});
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
