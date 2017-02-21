@@ -7,7 +7,7 @@
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
 var express = require('express');
-var cors = require('cors');
+var cors = require('node_modules/cors');
 app.use(cors());
 
 // cfenv provides access to your Cloud Foundry environment
